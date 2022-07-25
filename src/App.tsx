@@ -9,7 +9,13 @@ function App() {
       <form>
         <div className="form-group mb-3">
           <label htmlFor="numberOfBoxes">How many boxes?</label>
-          <input type="number" className="form-control" id="numberOfBoxes" />
+          <input
+            type="number"
+            min={3}
+            max={10}
+            className="form-control"
+            id="numberOfBoxes"
+          />
         </div>
         <div className="form-group mb-3">
           <label htmlFor="numberOfRuns">
@@ -17,7 +23,7 @@ function App() {
           </label>
           <input type="number" className="form-control" id="numberOfRuns" />
         </div>
-        <button type="button" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Run Monty Hall Problem
         </button>
       </form>
