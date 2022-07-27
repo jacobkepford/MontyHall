@@ -17,7 +17,7 @@ function MainForm() {
         </label>
         <input type="number" className="form-control" id="numberOfRuns" />
       </div>
-      <button type="submit" className="btn btn-primary">
+      <button type="button" className="btn btn-primary">
         Run Monty Hall Problem
       </button>
     </form>
