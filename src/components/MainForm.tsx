@@ -39,7 +39,7 @@ const MainForm = (props: MainFormProps) => {
           onChange={(event) => setRunCount(parseInt(event.target.value))}
         />
       </div>
-      <button type="button" className="btn btn-primary">
+      <button type="submit" className="btn btn-primary">
         Run Monty Hall Problem
       </button>
     </form>
