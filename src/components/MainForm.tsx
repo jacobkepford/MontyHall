@@ -5,13 +5,15 @@ type MainFormProps = {
   setBoxes: Function;
 };
 
-const HandleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-  event.preventDefault();
-};
-
 const MainForm = (props: MainFormProps) => {
   const [boxCount, setBoxCount] = useState(0);
   const [runCount, setRunCount] = useState(0);
+
+  const HandleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    props.setBoxes(boxCount);
+    props.setRuns(runCount);
+  };
 
   return (
     <form onSubmit={HandleSubmit}>
