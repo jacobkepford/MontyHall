@@ -6,12 +6,11 @@ type GameCountersProps = {
   runCount: number;
 };
 
-let gameCount = 0;
-
 function GameCounters(props: GameCountersProps) {
   const [programCount, setProgramCount] = useState(0);
   const [winCount, setWinCount] = useState(0);
   const [winPercent, setWinPercent] = useState(0);
+  const [startGame, setStartGame] = useState(true);
 
   const CreateBoxes = (boxCount: number) => {
     let boxes: string[] = [];
@@ -66,6 +65,9 @@ function GameCounters(props: GameCountersProps) {
   };
 
   const PlayMontyHall = (boxCount: number, runCount: number) => {
+    let gameWinCount = 0;
+    let gameCount = 0;
+
     while (gameCount < runCount) {
       const gameBoxes: string[] = CreateBoxes(boxCount);
       const chosenBoxIndex: number = GetRandomNumber(boxCount);
@@ -77,13 +79,18 @@ function GameCounters(props: GameCountersProps) {
       const switchBoxIndex: number = GetSwitchBoxIndex(boxesToReveal, boxCount);
 
       if (gameBoxes[switchBoxIndex] === "🔥") {
-        setWinCount(winCount + 1);
+        gameWinCount++;
       }
       gameCount++;
     }
+
+    setWinCount(gameWinCount);
+    setStartGame(false);
+    setWinPercent(Math.floor((gameWinCount / gameCount) * 100));
+    setProgramCount(runCount);
   };
 
-  if (props.boxCount > 0 && props.runCount > 0) {
+  if (props.boxCount > 0 && props.runCount > 0 && startGame) {
     PlayMontyHall(props.boxCount, props.runCount);
   }
 
@@ -91,7 +98,7 @@ function GameCounters(props: GameCountersProps) {
     <div className="row mt-5 align-items-center text-center">
       <div className="col-sm">
         <h1>{programCount}</h1>
-        <h1>Program Counter</h1>
+        <h1>Runs</h1>
       </div>
       <div className="col-sm">
         <h1>{winCount}</h1>
