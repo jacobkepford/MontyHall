@@ -5,16 +5,19 @@ import GameCounters from "./components/GameCounters";
 import { useState } from "react";
 
 const App = () => {
-  const [runCount, setRuns] = useState(0);
-  const [boxCount, setBoxCount] = useState(0);
+  const [programCount, setProgramCount] = useState(0);
+  const [winCount, setWinCount] = useState(0);
 
-  const setRunCount = (runCount: number) => setRuns(runCount);
-  const setBoxes = (boxTotal: number) => setBoxCount(boxTotal);
+  const sendProgramCount = (runCount: number) => setProgramCount(runCount);
+  const sendWinCount = (winCount: number) => setWinCount(winCount);
 
   return (
     <div className="App">
-      <MainForm setRuns={setRunCount} setBoxes={setBoxes} />
-      <GameCounters boxCount={boxCount} runCount={runCount} />
+      <MainForm
+        sendProgramCount={sendProgramCount}
+        sendWinCount={sendWinCount}
+      />
+      <GameCounters programCount={programCount} winCount={winCount} />
     </div>
   );
 };

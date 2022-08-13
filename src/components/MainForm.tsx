@@ -1,20 +1,32 @@
 import { useState } from "react";
+import { GetMontyHall } from "../data/GetMontyHall";
 
 type MainFormProps = {
-  setRuns: Function;
-  setBoxes: Function;
+  sendProgramCount: Function;
+  sendWinCount: Function;
 };
 
 const MainForm = (props: MainFormProps) => {
-  const [boxCount, setBoxCount] = useState(NaN);
-  const [runCount, setRunCount] = useState(NaN);
+  const [runCount, setRunCount] = useState("");
+  const [boxCount, setBoxCount] = useState("");
+
+  const ClearForm = () => {
+    setRunCount("");
+    setBoxCount("");
+  };
 
   const HandleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    props.setBoxes(boxCount);
-    props.setRuns(runCount);
-    setBoxCount(NaN);
-    setRunCount(NaN);
+
+    const boxValue = parseInt(boxCount);
+    const runValue = parseInt(runCount);
+
+    ClearForm();
+
+    const winCount = GetMontyHall(boxValue, runValue);
+
+    props.sendProgramCount(runCount);
+    props.sendWinCount(winCount);
   };
 
   return (
@@ -27,7 +39,7 @@ const MainForm = (props: MainFormProps) => {
           max={10}
           className="form-control"
           id="numberOfBoxes"
-          onChange={(event) => setBoxCount(parseInt(event.target.value))}
+          onChange={(event) => setBoxCount(event.target.value)}
           value={boxCount}
         />
       </div>
@@ -39,7 +51,7 @@ const MainForm = (props: MainFormProps) => {
           type="number"
           className="form-control"
           id="numberOfRuns"
-          onChange={(event) => setRunCount(parseInt(event.target.value))}
+          onChange={(event) => setRunCount(event.target.value)}
           value={runCount}
         />
       </div>
