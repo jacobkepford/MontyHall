@@ -5,6 +5,7 @@ import GameCounters from "./components/GameCounters";
 import { useState } from "react";
 
 const App = () => {
+  document.body.style.backgroundColor = "#162c35";
   const [programCount, setProgramCount] = useState(0);
   const [winCount, setWinCount] = useState(0);
 

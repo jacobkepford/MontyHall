@@ -9,7 +9,7 @@ function GameCounters(props: GameCountersProps) {
   winPercentage = winPercentage ? winPercentage : 0;
 
   return (
-    <div className="row mt-5 align-items-center text-center">
+    <div className="row mt-5 align-items-center text-center text-light">
       <div className="col-sm">
         <h1>{props.programCount}</h1>
         <h1>Runs</h1>

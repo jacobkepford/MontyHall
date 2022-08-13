@@ -30,7 +30,7 @@ const MainForm = (props: MainFormProps) => {
   };
 
   return (
-    <form onSubmit={HandleSubmit}>
+    <form onSubmit={HandleSubmit} className="text-light">
       <div className="form-group mb-3">
         <label htmlFor="numberOfBoxes">How many boxes?</label>
         <input
