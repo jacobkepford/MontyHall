@@ -6,13 +6,15 @@ type MainFormProps = {
 };
 
 const MainForm = (props: MainFormProps) => {
-  const [boxCount, setBoxCount] = useState(0);
-  const [runCount, setRunCount] = useState(0);
+  const [boxCount, setBoxCount] = useState(NaN);
+  const [runCount, setRunCount] = useState(NaN);
 
   const HandleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     props.setBoxes(boxCount);
     props.setRuns(runCount);
+    setBoxCount(NaN);
+    setRunCount(NaN);
   };
 
   return (
@@ -26,6 +28,7 @@ const MainForm = (props: MainFormProps) => {
           className="form-control"
           id="numberOfBoxes"
           onChange={(event) => setBoxCount(parseInt(event.target.value))}
+          value={boxCount}
         />
       </div>
       <div className="form-group mb-3">
@@ -37,6 +40,7 @@ const MainForm = (props: MainFormProps) => {
           className="form-control"
           id="numberOfRuns"
           onChange={(event) => setRunCount(parseInt(event.target.value))}
+          value={runCount}
         />
       </div>
       <button type="submit" className="btn btn-primary">
