@@ -6,13 +6,49 @@ type MainFormProps = {
   sendWinCount: Function;
 };
 
+type Error = {
+  runCountError: string;
+  boxCountError: string;
+};
+
 const MainForm = (props: MainFormProps) => {
   const [runCount, setRunCount] = useState("");
   const [boxCount, setBoxCount] = useState("");
+  const [errors, setErrors] = useState<Error>({
+    runCountError: "",
+    boxCountError: "",
+  });
 
   const ClearForm = () => {
     setRunCount("");
     setBoxCount("");
+  };
+
+  const ValidateForm = (boxValue: number, runValue: number) => {
+    let formIsValid = true;
+
+    if (boxValue < 3 || !boxValue) {
+      formIsValid = false;
+      setErrors((errors) => ({
+        ...errors,
+        boxCountError: "Minimum of 3 boxes required",
+      }));
+    }
+
+    if (!runValue) {
+      formIsValid = false;
+      setErrors((errors) => ({ ...errors, runCountError: "Required" }));
+    }
+
+    return formIsValid;
+  };
+
+  const ClearValidation = () => {
+    setErrors((errors) => ({
+      ...errors,
+      runCountError: "",
+      boxCountError: "",
+    }));
   };
 
   const HandleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
@@ -21,7 +57,14 @@ const MainForm = (props: MainFormProps) => {
     const boxValue = parseInt(boxCount);
     const runValue = parseInt(runCount);
 
+    const formIsValid = ValidateForm(boxValue, runValue);
+
+    if (!formIsValid) {
+      return;
+    }
+
     ClearForm();
+    ClearValidation();
 
     const winCount = GetMontyHall(boxValue, runValue);
 
@@ -42,6 +85,7 @@ const MainForm = (props: MainFormProps) => {
           onChange={(event) => setBoxCount(event.target.value)}
           value={boxCount}
         />
+        <span style={{ color: "red" }}>{errors.boxCountError}</span>
       </div>
       <div className="form-group mb-3 w-25">
         <label htmlFor="numberOfRuns">
@@ -54,6 +98,7 @@ const MainForm = (props: MainFormProps) => {
           onChange={(event) => setRunCount(event.target.value)}
           value={runCount}
         />
+        <span style={{ color: "red" }}>{errors.runCountError}</span>
       </div>
       <button type="submit" className="btn btn-primary">
         Run Monty Hall Problem
