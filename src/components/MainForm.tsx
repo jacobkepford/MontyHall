@@ -30,8 +30,8 @@ const MainForm = (props: MainFormProps) => {
   };
 
   return (
-    <form onSubmit={HandleSubmit} className="text-light">
-      <div className="form-group mb-3">
+    <form onSubmit={HandleSubmit} className="text-light ms-3">
+      <div className="form-group mb-3 w-25">
         <label htmlFor="numberOfBoxes">How many boxes?</label>
         <input
           type="number"
@@ -43,13 +43,13 @@ const MainForm = (props: MainFormProps) => {
           value={boxCount}
         />
       </div>
-      <div className="form-group mb-3">
+      <div className="form-group mb-3 w-25">
         <label htmlFor="numberOfRuns">
           How many times should the program run?
         </label>
         <input
           type="number"
-          className="form-control"
+          className="form-control col-xs-3"
           id="numberOfRuns"
           onChange={(event) => setRunCount(event.target.value)}
           value={runCount}
