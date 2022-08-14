@@ -68,7 +68,7 @@ const MainForm = (props: MainFormProps) => {
 
     const winCount = GetMontyHall(boxValue, runValue);
 
-    props.sendProgramCount(runCount);
+    props.sendProgramCount(runValue);
     props.sendWinCount(winCount);
   };
 

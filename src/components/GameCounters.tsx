@@ -11,11 +11,11 @@ function GameCounters(props: GameCountersProps) {
   return (
     <div className="row mt-5 align-items-center text-center text-light">
       <div className="col-sm">
-        <h1>{props.programCount}</h1>
+        <h1>{props.programCount.toLocaleString()}</h1>
         <h1>Runs</h1>
       </div>
       <div className="col-sm">
-        <h1>{props.winCount}</h1>
+        <h1>{props.winCount.toLocaleString()}</h1>
         <h1>Win Counter</h1>
       </div>
       <div className="col-sm">
