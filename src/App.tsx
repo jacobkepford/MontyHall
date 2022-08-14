@@ -18,7 +18,9 @@ const App = () => {
         sendProgramCount={sendProgramCount}
         sendWinCount={sendWinCount}
       />
-      <GameCounters programCount={programCount} winCount={winCount} />
+      {winCount && (
+        <GameCounters programCount={programCount} winCount={winCount} />
+      )}
     </div>
   );
 };
