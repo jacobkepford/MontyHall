@@ -2,8 +2,8 @@ import { useState } from "react";
 import { GetMontyHall } from "../data/GetMontyHall";
 
 type MainFormProps = {
-  sendProgramCount: Function;
-  sendWinCount: Function;
+  sendProgramCount: (programCount: number) => void;
+  sendWinCount: (winCount: number) => void;
 };
 
 type Error = {
